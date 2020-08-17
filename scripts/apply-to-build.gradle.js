@@ -11,24 +11,36 @@
 
      const projectBuildFile = path.join(platformRoot, 'build.gradle');
 
-     let fileContents = fs.readFileSync(projectBuildFile, 'utf8');
-     
-     if (fileContents.indexOf(artifactVersion) < 0) {
-       const myRegexp = /\bclasspath\b.*/g;
-       let match = myRegexp.exec(fileContents);
-       if (match != null) {
-         let insertLocation = match.index + match[0].length;
-    
-         fileContents = `${fileContents.substr(0, insertLocation)}\n${dependency}${fileContents.substr(insertLocation)}`;
-    
-         fs.writeFileSync(projectBuildFile, fileContents, 'utf8');
-    
-         console.log(`updated ${projectBuildFile} to include dependency ${artifactVersion}`);
+     try {
+       let fileContents = fs.readFileSync(projectBuildFile, 'utf8');
+  
+       if (fileContents.indexOf(artifactVersion) < 0) {
+         const myRegexp = /\bclasspath\b.*/g;
+         let match = myRegexp.exec(fileContents);
+         if (match != null) {
+           let insertLocation = match.index + match[0].length;
+      
+           fileContents = `${fileContents.substr(0, insertLocation)}\n${dependency}${fileContents.substr(insertLocation)}`;
+      
+           fs.writeFileSync(projectBuildFile, fileContents, 'utf8');
+      
+           console.log(`updated ${projectBuildFile} to include dependency ${artifactVersion}`);
+         } else {
+           console.error(`unable to insert dependency ${artifactVersion}`);
+         }
        } else {
-         console.error(`unable to insert dependency ${artifactVersion}`);
+         console.error(`Dependency ${artifactVersion} already exists`);
        }
-     } else {
-       console.error(`Dependency ${artifactVersion} already exists`);
+     }
+     catch (e) {
+       if (e instanceof Error) {
+         if (e.code === 'ENOENT') {
+//           Do nothing as this is possible if a different platform is initiated first.
+//           console.log('File not found!');
+           return;
+         }
+       }
+       throw err;
      }
  }
 
