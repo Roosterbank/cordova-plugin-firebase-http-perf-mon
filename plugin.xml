@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-firebase-http-perf-mon"
-        version="0.1.2" >
+        version="0.1.3" >
   <name>Cordova FirebaseX Android HTTP Perf Extension</name>
 
   <dependency id="cordova-plugin-firebasex" version="10.1.0-cli" />
@@ -13,7 +13,7 @@
   </engines>
 
   <platform name="android">
-    <hook type="before_build" src="scripts/apply-to-build.gradle.js" />
+    <hook type="before_prepare" src="scripts/apply-to-build.gradle.js" />
     <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
   </platform>
 
