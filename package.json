@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-firebase-http-perf-mon",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Roosterbank/cordova-plugin-firebase-http-perf-mon#readme",
+  "cordova": {
+    "id": "cordova-plugin-firebase-http-perf-mon",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roosterbank/cordova-plugin-firebase-http-perf-mon.git"
+  },
+  "author": {
+    "name": "dev@roostermoney.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "Firebase",
+    "Performance monitoring",
+    "HTTP",
+    "cordova-android"
+  ]
+}
