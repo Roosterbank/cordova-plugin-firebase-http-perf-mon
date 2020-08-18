@@ -10,6 +10,10 @@
      const dependency = `        classpath '${artifactVersion}'`;
 
      const projectBuildFile = path.join(platformRoot, 'build.gradle');
+  
+    if(!fs.existsSync(projectBuildFile)) {
+      console.info(`Skipping: Root Android Gradle file not found - Android Platform not found or `)
+    }
 
      try {
        let fileContents = fs.readFileSync(projectBuildFile, 'utf8');
@@ -24,23 +28,24 @@
       
            fs.writeFileSync(projectBuildFile, fileContents, 'utf8');
       
-           console.log(`updated ${projectBuildFile} to include dependency ${artifactVersion}`);
+           console.info(`updated ${projectBuildFile} to include dependency ${artifactVersion}`);
          } else {
-           console.error(`unable to insert dependency ${artifactVersion}`);
+           console.error(`unable to insert dependency ${artifactVersion}, could not find location to insert.`);
          }
        } else {
-         console.error(`Dependency ${artifactVersion} already exists`);
+         console.info(`Dependency ${artifactVersion} already exists`);
        }
      }
      catch (e) {
        if (e instanceof Error) {
          if (e.code === 'ENOENT') {
+//           This shouldn't occur because of the check before read.
 //           Do nothing as this is possible if a different platform is initiated first.
 //           console.log('File not found!');
            return;
          }
        }
-       throw err;
+       console.error(`An unexpected error has been thrown trying to add the ${artifactVersion} dependency: `, e);
      }
  }
 
