@@ -5,7 +5,7 @@
         version="0.3.0" >
   <name>Cordova FirebaseX Android HTTP Perf Extension</name>
 
-  <dependency id="cordova-plugin-firebasex" version="10.2.0-cli" />
+  <dependency id="cordova-plugin-firebasex" version="11.0.1-cli" />
 
   <engines>
     <engine name="cordova" version=">=9" />
