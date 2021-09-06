@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-firebase-http-perf-mon",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "homepage": "https://github.com/Roosterbank/cordova-plugin-firebase-http-perf-mon#readme",
   "cordova": {
     "id": "cordova-plugin-firebase-http-perf-mon",
